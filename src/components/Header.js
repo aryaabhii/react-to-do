@@ -7,7 +7,7 @@ const header = (props) => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <h3 className="text-success">{props.title}</h3>
+            <h3 className="text-success title">{props.title}</h3>
           </a>
           <button
             className="navbar-toggler"
@@ -21,7 +21,7 @@ const header = (props) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
@@ -49,7 +49,7 @@ const header = (props) => {
             ) : (
               ""
             )}
-          </div>
+          </div> */}
         </div>
       </nav>
       {/* <div className="mt-3 p-2">

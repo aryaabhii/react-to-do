@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Footer from "../components/Footer";
 
 const ToDo = (props) => {
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
@@ -74,7 +75,7 @@ const ToDo = (props) => {
         <div className="col-md-8">
           <div className="card">
             <div className="card-header bg-success">
-              <h3 className="text-center m-2 text-uppercase text-white">To Do List</h3>
+              <h3 className="text-center m-2 text-uppercase text-white">To Do</h3>
             </div>
             <div className="card-body">
               <div className="row">
@@ -175,7 +176,9 @@ const ToDo = (props) => {
                             <h1 className="text-success">{item.title}</h1>
                             <p>{item.description}</p>
                             <p>
-                              <small>Completed on : {item.completedOn}</small>
+                              <small className="text-secondary">
+                                Completed on : {item.completedOn}
+                              </small>
                             </p>
                           </div>
                           <div className="col-md-2">
@@ -195,6 +198,9 @@ const ToDo = (props) => {
                     })}
                 </div>
               </div>
+            </div>
+            <div className="card-footer bg-success">
+              <Footer />
             </div>
           </div>
         </div>

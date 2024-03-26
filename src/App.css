@@ -1,3 +1,7 @@
+
+*{
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 .App {
   text-align: center;
 }
@@ -64,3 +68,16 @@
   /* --bs-box-shadow: 0 0.5rem 1rem rgb(2 96 7 / 37%); */
   border: 0.01rem dashed rgb(2 96 7 / 37%); 
 }
+
+.owner-info {
+  cursor: pointer;
+  text-decoration: none;
+}
+.owner-info:hover {
+  background-color: blue;
+}
+
+.title {
+  font-weight: 700;
+}
+

@@ -1,14 +1,12 @@
 import "./App.css";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import ToDo from "./components/ToDo";
 
 function App() {
   return (
     <>
-      <Header title="Abhijeet" searchBar={false} />
+      <Header title="To Do" searchBar={false} />
       <ToDo />
-      <Footer />
     </>
   );
 }
