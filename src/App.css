@@ -1,6 +1,10 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 *{
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>;
+  font-style: normal; */
 }
 .App {
   text-align: center;
@@ -74,10 +78,24 @@
   text-decoration: none;
 }
 .owner-info:hover {
-  background-color: blue;
+  text-decoration: underline;
 }
 
 .title {
   font-weight: 700;
 }
 
+/* Add this CSS to your stylesheet */
+.fade-out {
+  transition: opacity 0.5s ease-out; /* Adjust the transition duration as needed */
+  opacity: 0;
+}
+
+.task-table {
+  max-height: 350px; /* Remove quotes */
+  overflow-y: auto; /* Remove quotes */
+}
+
+.main-card {
+  max-height: 600px;
+}

@@ -4,20 +4,40 @@ import Footer from "../components/Footer";
 const ToDo = (props) => {
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
-  const [newTitle, setNewTitle] = useState("");
-  const [newDescription, setNewDescription] = useState("");
+  const [newTitle, setNewTitle] = useState(""); // get the data from the input box
+  const [newDescription, setNewDescription] = useState(""); // get the data from the input box
   const [completedTodos, setCompletedTodos] = useState([]);
+  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
+  const [errorMessage, setErrorMessage] = useState(""); // New state for success message
 
   const handleToDo = () => {
-    let newDoItem = {
-      title: newTitle,
-      description: newDescription,
-    };
+    if (!newTitle || !newDescription) {
+      setErrorMessage("Please! Enter title and description. 😌");
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 5000);
+      return;
+    } else {
+      let newDoItem = {
+        title: newTitle,
+        description: newDescription,
+      };
 
-    let updatedToDoArr = [...allTodos];
-    updatedToDoArr.push(newDoItem);
-    setTodos(updatedToDoArr);
-    localStorage.setItem("todolist", JSON.stringify(updatedToDoArr));
+      let updatedToDoArr = [...allTodos];
+      updatedToDoArr.push(newDoItem);
+      setTodos(updatedToDoArr);
+      localStorage.setItem("todolist", JSON.stringify(updatedToDoArr));
+
+      // Reset form data
+      setNewTitle("");
+      setNewDescription("");
+
+      // Set success message
+      setSuccessMessage("Your task has been added! 😍");
+      setTimeout(() => {
+        setSuccessMessage(""); // Clear the success message after a few seconds
+      }, 5000); // 5 seconds timeout
+    }
   };
 
   // ṣaving the data in local storage
@@ -39,15 +59,25 @@ const ToDo = (props) => {
 
     localStorage.setItem("todolist", JSON.stringify(reduceToDo));
     setTodos(reduceToDo);
+
+    // Set success message
+    setSuccessMessage("Your task has been removed! 😳");
+    setTimeout(() => {
+      setSuccessMessage(""); // Clear the success message after a few seconds
+    }, 5000); // 5 seconds timeout
   };
 
-  //  for saved delete operation
+  // for saved delete operation
   const handleCompletedToDoDelete = (index) => {
-    let reduceToDo = [...completedTodos];
-    reduceToDo.splice(index);
+    let updatedCompletedTodos = [...completedTodos];
+    updatedCompletedTodos.splice(index, 1);
+    setCompletedTodos(updatedCompletedTodos);
+    localStorage.setItem("completedTodos", JSON.stringify(updatedCompletedTodos));
 
-    localStorage.setItem("todolist", JSON.stringify(reduceToDo));
-    setTodos(reduceToDo);
+    setSuccessMessage("Your task has been removed! 😳");
+    setTimeout(() => {
+      setSuccessMessage(""); // Clear the success message after a few seconds
+    }, 5000); // 5 seconds timeout
   };
 
   // for complete
@@ -67,18 +97,49 @@ const ToDo = (props) => {
     handleToDoDelete(index);
 
     localStorage.setItem("completedTodos", JSON.stringify(updatedCompletedTodos));
+
+    setSuccessMessage("Your task marked as completed! 🥰");
+    setTimeout(() => {
+      setSuccessMessage(""); // Clear the success message after a few seconds
+    }, 5000); // 5 seconds timeout
   };
 
   return (
-    <div className="container-fluid mt-4">
+    <div className="container-fluid mt-2">
       <div className="row justify-content-center">
         <div className="col-md-8">
-          <div className="card">
+          <div className="card mb-3 main-card">
             <div className="card-header bg-success">
-              <h3 className="text-center m-2 text-uppercase text-white">To Do</h3>
+              <h3 className="text-center m-2 text-white">Add Your Task Here</h3>
             </div>
+
+            {/* Success message */}
+            {successMessage && (
+              <div className="row justify-content-center mt-3">
+                <div className="col-md-4 text-center">
+                  <div className="alert alert-success" role="alert">
+                    {successMessage}
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* end of success msg */}
+
+            {/* Success message */}
+            {errorMessage && (
+              <div className="row justify-content-center mt-3">
+                <div className="col-md-5 text-center">
+                  <div className="alert alert-danger" role="alert">
+                    {errorMessage}
+                  </div>
+                </div>
+              </div>
+            )}
+            {/* end of success msg */}
+
             <div className="card-body">
               <div className="row">
+                {/* form start */}
                 <div className="col-md-5">
                   <label className="form-label">Task</label>
                   <input
@@ -112,6 +173,7 @@ const ToDo = (props) => {
                   </button>
                 </div>
               </div>
+              {/* form end */}
 
               <div className="row mt-4">
                 <div className="col">
@@ -119,7 +181,7 @@ const ToDo = (props) => {
                     className={`btn ${!isCompleteScreen ? "btn-info" : "btn-outline-info"}`}
                     onClick={() => setIsCompleteScreen(false)}
                   >
-                    All To DO
+                    All Task
                   </button>
                   <button
                     className={`btn mx-2 ${
@@ -127,23 +189,23 @@ const ToDo = (props) => {
                     }`}
                     onClick={() => setIsCompleteScreen(true)}
                   >
-                    Completed
+                    Completed Task
                   </button>
                 </div>
               </div>
 
-              <div className="row mt-3 p-2">
+              <div className="row mt-3 p-2 task-table">
                 <div className="card data-card">
-                  {isCompleteScreen === false &&
-                    allTodos.map((item, index) => {
-                      return (
-                        <div className="row p-2" key={index}>
+                  {/* For all task */}
+                  {isCompleteScreen === false && allTodos.length > 0
+                    ? allTodos.map((item, index) => (
+                        <div className="row p-1" key={index}>
                           <div className="col-md-10">
                             <h1 className="text-success">{item.title}</h1>
                             <p>{item.description}</p>
                             {/* <p>
-                            <small>completed on : {item.completedOn}</small>
-                          </p> */}
+                              <small>completed on : {item.completedOn}</small>
+                            </p> */}
                           </div>
                           <div className="col-md-2">
                             <div className="mt-4 float-end">
@@ -166,12 +228,17 @@ const ToDo = (props) => {
                           </div>
                           <hr />
                         </div>
-                      );
-                    })}
-                  {isCompleteScreen === true &&
-                    completedTodos.map((item, index) => {
-                      return (
-                        <div className="row p-2" key={index}>
+                      ))
+                    : isCompleteScreen === false && (
+                        <div className="text-secondary p-3 text-center">
+                          You do not added any task yet! 😢
+                        </div>
+                      )}
+
+                  {/* For completed task */}
+                  {isCompleteScreen === true && completedTodos.length > 0
+                    ? completedTodos.map((item, index) => (
+                        <div className="row p-1" key={index}>
                           <div className="col-md-10">
                             <h1 className="text-success">{item.title}</h1>
                             <p>{item.description}</p>
@@ -194,8 +261,12 @@ const ToDo = (props) => {
                           </div>
                           <hr />
                         </div>
-                      );
-                    })}
+                      ))
+                    : isCompleteScreen === true && (
+                        <div className="text-secondary p-3 text-center">
+                          You do not marked any task as completed! 😢
+                        </div>
+                      )}
                 </div>
               </div>
             </div>
