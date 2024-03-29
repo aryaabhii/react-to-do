@@ -1,12 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 
-const header = (props) => {
+const Header = (props) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/">
             <h3 className="text-success title">{props.title}</h3>
           </a>
           <button
@@ -21,16 +20,11 @@ const header = (props) => {
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          {/* <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
+                <a className="nav-link" href="https://kumarabhijeett.blogspot.com" target="_">
+                  About Developer
                 </a>
               </li>
             </ul>
@@ -49,7 +43,7 @@ const header = (props) => {
             ) : (
               ""
             )}
-          </div> */}
+          </div>
         </div>
       </nav>
       {/* <div className="mt-3 p-2">
@@ -61,4 +55,4 @@ const header = (props) => {
   );
 };
 
-export default header;
+export default Header;
