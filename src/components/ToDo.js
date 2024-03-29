@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 const ToDo = (props) => {
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
   const [allTodos, setTodos] = useState([]);
-  const [newTitle, setNewTitle] = useState(""); // get the data from the input box
-  const [newDescription, setNewDescription] = useState(""); // get the data from the input box
+  const [newTitle, setNewTitle] = useState("");
+  const [newDescription, setNewDescription] = useState("");
   const [completedTodos, setCompletedTodos] = useState([]);
-  const [successMessage, setSuccessMessage] = useState(""); // New state for success message
-  const [errorMessage, setErrorMessage] = useState(""); // New state for success message
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleToDo = () => {
     if (!newTitle || !newDescription) {
@@ -28,19 +28,16 @@ const ToDo = (props) => {
       setTodos(updatedToDoArr);
       localStorage.setItem("todolist", JSON.stringify(updatedToDoArr));
 
-      // Reset form data
       setNewTitle("");
       setNewDescription("");
 
-      // Set success message
       setSuccessMessage("Your task has been added! 😍");
       setTimeout(() => {
-        setSuccessMessage(""); // Clear the success message after a few seconds
-      }, 5000); // 5 seconds timeout
+        setSuccessMessage("");
+      }, 5000);
     }
   };
 
-  // ṣaving the data in local storage
   useEffect(() => {
     let saveToDo = JSON.parse(localStorage.getItem("todolist"));
     let saveCompletedToDo = JSON.parse(localStorage.getItem("completedTodos"));
@@ -52,7 +49,6 @@ const ToDo = (props) => {
     }
   }, []);
 
-  // for deleting
   const handleToDoDelete = (index) => {
     let reduceToDo = [...allTodos];
     reduceToDo.splice(index);
@@ -60,14 +56,12 @@ const ToDo = (props) => {
     localStorage.setItem("todolist", JSON.stringify(reduceToDo));
     setTodos(reduceToDo);
 
-    // Set success message
     setSuccessMessage("Your task has been removed! 😳");
     setTimeout(() => {
-      setSuccessMessage(""); // Clear the success message after a few seconds
-    }, 5000); // 5 seconds timeout
+      setSuccessMessage("");
+    }, 5000);
   };
 
-  // for saved delete operation
   const handleCompletedToDoDelete = (index) => {
     let updatedCompletedTodos = [...completedTodos];
     updatedCompletedTodos.splice(index, 1);
@@ -76,11 +70,10 @@ const ToDo = (props) => {
 
     setSuccessMessage("Your task has been removed! 😳");
     setTimeout(() => {
-      setSuccessMessage(""); // Clear the success message after a few seconds
-    }, 5000); // 5 seconds timeout
+      setSuccessMessage("");
+    }, 5000);
   };
 
-  // for complete
   const handleToDoComplete = (index) => {
     const now = new Date();
     const completedOn = `${now.getDate()}-${
@@ -88,7 +81,7 @@ const ToDo = (props) => {
     }-${now.getFullYear()} at ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
     const completedItem = allTodos[index];
-    const updatedAllTodos = allTodos.filter((_, i) => i !== index); // Remove completed item from allTodos
+    const updatedAllTodos = allTodos.filter((_, i) => i !== index);
     setTodos(updatedAllTodos);
 
     const updatedCompletedTodos = [...completedTodos, { ...completedItem, completedOn }];
@@ -100,20 +93,18 @@ const ToDo = (props) => {
 
     setSuccessMessage("Your task marked as completed! 🥰");
     setTimeout(() => {
-      setSuccessMessage(""); // Clear the success message after a few seconds
-    }, 5000); // 5 seconds timeout
+      setSuccessMessage("");
+    }, 5000);
   };
 
   return (
-    <div className="container-fluid mt-2">
+    <div className="container mt-2">
       <div className="row justify-content-center">
-        <div className="col-md-8">
+        <div className="col-lg-8">
           <div className="card mb-3 main-card">
             <div className="card-header bg-success">
               <h3 className="text-center m-2 text-white">Add Your Task Here</h3>
             </div>
-
-            {/* Success message */}
             {successMessage && (
               <div className="row justify-content-center mt-3">
                 <div className="col-md-4 text-center">
@@ -123,9 +114,6 @@ const ToDo = (props) => {
                 </div>
               </div>
             )}
-            {/* end of success msg */}
-
-            {/* Success message */}
             {errorMessage && (
               <div className="row justify-content-center mt-3">
                 <div className="col-md-5 text-center">
@@ -135,11 +123,8 @@ const ToDo = (props) => {
                 </div>
               </div>
             )}
-            {/* end of success msg */}
-
             <div className="card-body">
               <div className="row">
-                {/* form start */}
                 <div className="col-md-5">
                   <label className="form-label">
                     Task <span className="text-danger fs-5">*</span>
@@ -176,8 +161,6 @@ const ToDo = (props) => {
                   </button>
                 </div>
               </div>
-              {/* form end */}
-
               <div className="row mt-4">
                 <div className="col">
                   <button
@@ -196,19 +179,14 @@ const ToDo = (props) => {
                   </button>
                 </div>
               </div>
-
               <div className="row mt-3 p-2 task-table">
                 <div className="card data-card">
-                  {/* For all task */}
                   {isCompleteScreen === false && allTodos.length > 0
                     ? allTodos.map((item, index) => (
                         <div className="row p-1" key={index}>
                           <div className="col-md-10">
                             <h1 className="task-title">{item.title}</h1>
                             <p>{item.description}</p>
-                            {/* <p>
-                              <small>completed on : {item.completedOn}</small>
-                            </p> */}
                           </div>
                           <div className="col-md-2">
                             <div className="mt-4 float-end">
@@ -237,8 +215,6 @@ const ToDo = (props) => {
                           You do not added any task yet! 😢
                         </div>
                       )}
-
-                  {/* For completed task */}
                   {isCompleteScreen === true && completedTodos.length > 0
                     ? completedTodos.map((item, index) => (
                         <div className="row p-1" key={index}>

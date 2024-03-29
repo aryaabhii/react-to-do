@@ -132,9 +132,25 @@ body {
 
 }
 
+@media only screen and (max-width: 500px) {
+  .data-card {
+    max-height: 140px; 
+    overflow-y: auto; 
+  }
+
+}
+
 @media only screen and (max-width: 600px) {
   .data-card {
     max-height: 160px; 
     overflow-y: auto; 
   }
+
+}
+@media only screen and (max-width: 800px) {
+  .data-card {
+    max-height: 160px; 
+    overflow-y: auto; 
+  }
+
 }
