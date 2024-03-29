@@ -122,6 +122,11 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.task-title {
+  background: -webkit-linear-gradient(19deg, #086bb7 0%, #B721FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .navbar {
   background: #5D4157;  /* fallback for old browsers */
   background: #757F9A;  /* fallback for old browsers */

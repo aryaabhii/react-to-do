@@ -166,8 +166,7 @@ const ToDo = (props) => {
                     onChange={(e) => setNewDescription(e.target.value)}
                   />
                 </div>
-                <div className="col-md-2">
-                  <br />
+                <div className="col-md-2 mt-4">
                   <button
                     type="button"
                     className="btn btn-outline-primary mt-3"
@@ -205,7 +204,7 @@ const ToDo = (props) => {
                     ? allTodos.map((item, index) => (
                         <div className="row p-1" key={index}>
                           <div className="col-md-10">
-                            <h1 className="text-success">{item.title}</h1>
+                            <h1 className="task-title">{item.title}</h1>
                             <p>{item.description}</p>
                             {/* <p>
                               <small>completed on : {item.completedOn}</small>
@@ -244,7 +243,7 @@ const ToDo = (props) => {
                     ? completedTodos.map((item, index) => (
                         <div className="row p-1" key={index}>
                           <div className="col-md-10">
-                            <h1 className="text-success">{item.title}</h1>
+                            <h1 className="task-title">{item.title}</h1>
                             <p>{item.description}</p>
                             <p>
                               <small className="text-secondary">
