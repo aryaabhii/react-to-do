@@ -141,7 +141,9 @@ const ToDo = (props) => {
               <div className="row">
                 {/* form start */}
                 <div className="col-md-5">
-                  <label className="form-label">Task</label>
+                  <label className="form-label">
+                    Task <span className="text-danger fs-5">*</span>
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -152,7 +154,9 @@ const ToDo = (props) => {
                   />
                 </div>
                 <div className="col-md-5">
-                  <label className="form-label">Description</label>
+                  <label className="form-label">
+                    Description <span className="text-danger fs-5">*</span>
+                  </label>
                   <input
                     type="text"
                     className="form-control"
@@ -166,7 +170,7 @@ const ToDo = (props) => {
                   <br />
                   <button
                     type="button"
-                    className="btn btn-outline-primary mt-2"
+                    className="btn btn-outline-primary mt-3"
                     onClick={handleToDo}
                   >
                     Add
