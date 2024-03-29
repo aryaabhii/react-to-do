@@ -6,7 +6,7 @@ const Header = (props) => {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            <h3 className="text-success title">{props.title}</h3>
+            <h3 className="title">{props.title}</h3>
           </a>
           <button
             className="navbar-toggler"
