@@ -51,7 +51,7 @@ const ToDo = (props) => {
 
   const handleToDoDelete = (index) => {
     let reduceToDo = [...allTodos];
-    reduceToDo.splice(index);
+    reduceToDo.splice(index, 1);
 
     localStorage.setItem("todolist", JSON.stringify(reduceToDo));
     setTodos(reduceToDo);
@@ -123,7 +123,7 @@ const ToDo = (props) => {
                 </div>
               </div>
             )}
-            <div className="card-body">
+            <div className="card form-card m-2 p-2">
               <div className="row">
                 <div className="col-md-5">
                   <label className="form-label">
@@ -151,17 +151,16 @@ const ToDo = (props) => {
                     onChange={(e) => setNewDescription(e.target.value)}
                   />
                 </div>
-                <div className="col-md-2 mt-4">
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary mt-3"
-                    onClick={handleToDo}
-                  >
+                <div className="col-md-2">
+                  {/* <br /> */}
+                  <button type="button" className="btn btn-outline-primary" onClick={handleToDo}>
                     Add
                   </button>
                 </div>
               </div>
-              <div className="row mt-4">
+            </div>
+            <div className="card button-card p-2 m-2">
+              <div className="row">
                 <div className="col">
                   <button
                     className={`btn ${!isCompleteScreen ? "btn-info" : "btn-outline-info"}`}
@@ -179,7 +178,10 @@ const ToDo = (props) => {
                   </button>
                 </div>
               </div>
-              <div className="row mt-3 p-2 task-table">
+            </div>
+
+            <div className="card-body overflow-auto">
+              <div className="row task-table">
                 <div className="card data-card">
                   {isCompleteScreen === false && allTodos.length > 0
                     ? allTodos.map((item, index) => (
@@ -189,7 +191,7 @@ const ToDo = (props) => {
                             <p>{item.description}</p>
                           </div>
                           <div className="col-md-2">
-                            <div className="mt-4 float-end">
+                            <div className="float-end">
                               <button
                                 type="button"
                                 className="btn btn-sm btn-outline-success m-1"
